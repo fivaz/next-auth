@@ -76,7 +76,6 @@ Let's look at `Session`:
     )
   }
   ```
-
   </TabItem>
   <TabItem value="sveltekit" label="SvelteKit">
     TODO SvelteKit
@@ -89,6 +88,8 @@ Let's look at `Session`:
   </TabItem>
 </Tabs>
 
+<Tabs groupId="frameworks" queryString>
+  <TabItem value="next" label="Next.js" default>
 To extend/augment this type, create a `types/next-auth.d.ts` file in your project:
 
 ```ts title="types/next-auth.d.ts"
@@ -106,6 +107,33 @@ declare module "next-auth" {
   }
 }
 ```
+  </TabItem>
+  <TabItem value="sveltekit" label="SvelteKit">
+To extend/augment this type, create a `types/auth.d.ts` file in your project:
+
+```ts title="types/auth.d.ts"
+import { DefaultSession } from "@auth/core/types"
+
+declare module "@auth/core/types" {
+  /**
+   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
+  interface Session {
+    user: {
+      /** The user's postal address. */
+      address: string
+    }
+  }
+}
+```
+  </TabItem>
+  <TabItem value="solidstart" label="SolidStart">
+    TODO SolidStart
+  </TabItem>
+  <TabItem value="core" label="Vanilla (No Framework)">
+    TODO Core
+  </TabItem>
+</Tabs>
 
 #### Extend default interface properties
 
